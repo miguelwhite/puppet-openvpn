@@ -624,14 +624,6 @@ define openvpn::server(
         key_ou       => $key_ou,
         tls_auth     => $tls_auth,
       }
-    } elsif !$extca_enabled {
-      if !defined(Openvpn::Ca[$shared_ca]) {
-        fail("Openvpn::ca[${name}] is not defined for shared_ca")
-      }
-      $ca_common_name = getparam(Openvpn::Ca[$shared_ca], 'common_name')
-    } else {
-      $ca_common_name = undef
-    }
 
       ## Renewal of crl.pem
       if ($crl_auto_renew) {
