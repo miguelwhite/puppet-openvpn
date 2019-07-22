@@ -500,6 +500,7 @@ define openvpn::server(
   $crl_auto_renew            = true,
   $crl_renew_schedule_period = 'monthly',
   $crl_renew_schedule_repeat = 2,
+  $easyrsa_version           = '3.0',
   $extca_enabled             = false,
   $extca_ca_cert_file        = undef,
   $extca_ca_crl_file         = undef,
@@ -632,7 +633,7 @@ define openvpn::server(
           period => $crl_renew_schedule_period,
           repeat => $crl_renew_schedule_repeat,
         }
-        case $openvpn::easyrsa_version {
+        case $easyrsa_version {
           '2.0': {
             exec { "renew crl.pem on ${name}":
               command  => ". ./vars && KEY_CN='' KEY_OU='' KEY_NAME='' KEY_ALTNAMES='' openssl ca -gencrl -out ${etc_directory}/openvpn/${name}/crl.pem -config ${etc_directory}/openvpn/${name}/easy-rsa/openssl.cnf",
