@@ -500,7 +500,7 @@ define openvpn::server(
   $crl_auto_renew            = true,
   $crl_renew_schedule_period = 'monthly',
   $crl_renew_schedule_repeat = 2,
-  $easyrsa_version           = '3.0',
+  $easyrsa_version           = '2.0',
   $extca_enabled             = false,
   $extca_ca_cert_file        = undef,
   $extca_ca_crl_file         = undef,
